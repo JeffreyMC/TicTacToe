@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/estilos.css" />
+    <title>Tic Tac Toe</title>
+  </head>
+
+  <div class="centro" id="contenedorJugadores">
+    <div>
+      <label>Jugador 1: </label>
+      <input
+        type="text"
+        class="jugador1"
+        id="jugador1"
+        placeholder="Ingrese nombre"
+      />
+    </div>
+    <br />
+
+    <div>
+      <label>Jugador 2: </label>
+      <input
+        type="text"
+        class="jugador2"
+        id="jugador2"
+        placeholder="Ingrese nombre"
+      />
+    </div>
+    <br />
+
+    <button onclick="empezarJuego()">Empezar juego</button>
+  </div>
+
+  <!--Tabla de Tica Tac Toe-->
+  <div id="contenedorTabla" hidden>
+    <div class="centroGato">
+      <table class="tabla">
+        <tr>
+          <td id="t1" title="seleccionar casilla">X</td>
+          <td id="t2" title="seleccionar casilla">X</td>
+          <td id="t3" title="seleccionar casilla">X</td>
+        </tr>
+
+        <tr>
+          <td id="c1" title="seleccionar casilla">X</td>
+          <td id="c2" title="seleccionar casilla">X</td>
+          <td id="c3" title="seleccionar casilla">X</td>
+        </tr>
+
+        <tr>
+          <td id="c1" title="seleccionar casilla">X</td>
+          <td id="c2" title="seleccionar casilla">X</td>
+          <td id="c3" title="seleccionar casilla">X</td>
+        </tr>
+      </table>
+    </div>
+
+    <!--Marcadores-->
+    <div class="centro-m1">
+      <h3>Marcador del juego</h3>
+    </div>
+
+    <div class="centroGato">
+      <table>
+        <tr>
+          <th>Jugador 1</th>
+          <th>Jugador 2</th>
+        </tr>
+        <tr>
+          <td id="marcador1">0</td>
+          <td id="marcador2">0</td>
+        </tr>
+      </table>
+    </div>
+
+    <!--Mensaje: gana, pierde, empata-->
+    <div class="centro-m1">
+      <h2 id="mensaje" hidden></h2>
+    </div>
+
+    <!--Botones juego-->
+    <div class="centro-m1">
+      <button>Terminar juego</button>
+      <button>Reiniciar juego</button>
+    </div>
+  </div>
+
+  <script src="/scripts.js"></script>
+  <body></body>
+</html>

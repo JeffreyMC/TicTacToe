@@ -1,0 +1,40 @@
+.centro {
+  text-align: center;
+  margin-top: 5%;
+}
+
+.jugador1 {
+  background-color: #3a86ca;
+  color: white;
+  font-size: 15px;
+}
+
+.jugador2 {
+  background-color: #0d617e;
+  color: white;
+  font-size: 15px;
+}
+
+.jugador1::placeholder,
+.jugador2::placeholder {
+  color: white;
+}
+
+.tabla td {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.centroGato {
+  display: flex;
+  justify-content: center;
+  margin-top: 1%;
+}
+
+.centro-m1 {
+  text-align: center;
+  margin-top: 1%;
+}
