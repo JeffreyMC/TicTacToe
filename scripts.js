@@ -1,13 +1,21 @@
+//Created by Jeffrey Muñoz Castro
+// nov 30 2020
+//Github: JeffreyMC
+
 var jugador1, jugador2
 
 //variable de turno
 var turno
 
-//variable de ganador (0 jugador 1, 1 jugador 2)
+//variable de ganador
 var existeGanador = false
 
 //contador de turnos
 var contadorTurnos = 0
+
+//marcadores
+var marcador1 = 0
+var marcador2 = 0
 
 function empezarJuego(){
 
@@ -50,20 +58,23 @@ function seleccionarCasilla(elemento){
     
     let simbolo
 
-    if(elemento.innerHTML == ""){
+    //si es igual a 9 es un empate
+    contadorTurnos++
+
+    if(elemento.innerHTML == "" && existeGanador == false){
         if(turno == true){
             simbolo = "O"
             turno = false
         }
         else{
             simbolo = "X"
-            turno = true;
+            turno = true
         }
-    
+            
         elemento.innerHTML = simbolo
-
-        let idCasilla = elemento.getAttribute("id")
     
+        let idCasilla = elemento.getAttribute("id")
+        
         switch (idCasilla) {
             case "t1":
                 validaT1(simbolo)
@@ -92,13 +103,17 @@ function seleccionarCasilla(elemento){
             case "b3":
                 validaB3(simbolo)
                 break;                    
-
+    
         }
     }
     else{
-        alert("Esta casilla ya ha sido seleccionada. Seleccione otra")
+        if(existeGanador){
+            alert("El juego ha terminado. Reinicia o termina el juego")
+        }
+        else{
+            alert("Esta casilla ya ha sido seleccionada. Seleccione otra")
+        }  
     }
- 
 }
 
 function validaT1(simbolo){
@@ -114,6 +129,9 @@ function validaT1(simbolo){
     else if(document.getElementById("c1").innerHTML == simbolo && document.getElementById("b1" ).innerHTML == simbolo){
         obtenerGanador(simbolo)
     }
+    else{
+        validaEmpate()
+    }
 
 }
 
@@ -126,6 +144,9 @@ function validaT2(simbolo){
     }
     else if(document.getElementById("c2").innerHTML == simbolo && document.getElementById("b2" ).innerHTML == simbolo){
         obtenerGanador(simbolo)
+    }
+    else{
+        validaEmpate()
     }
 
 }
@@ -143,6 +164,9 @@ function validaT3(simbolo){
     else if(document.getElementById("c3").innerHTML == simbolo && document.getElementById("b3" ).innerHTML == simbolo){
         obtenerGanador(simbolo)
     }
+    else{
+        validaEmpate()
+    }
 }
 
 function validaC1(simbolo){
@@ -154,6 +178,9 @@ function validaC1(simbolo){
     }
     else if(document.getElementById("c2").innerHTML == simbolo && document.getElementById("c3" ).innerHTML == simbolo){
         obtenerGanador(simbolo)
+    }
+    else{
+        validaEmpate()
     }
 }
 
@@ -173,6 +200,9 @@ function validaC2(simbolo){
     else if(document.getElementById("b1").innerHTML == simbolo && document.getElementById("t3" ).innerHTML == simbolo){
         obtenerGanador(simbolo)
     }
+    else{
+        validaEmpate()
+    }
 
 }
 
@@ -185,6 +215,9 @@ function validaC3(simbolo){
     }
     else if(document.getElementById("c1").innerHTML == simbolo && document.getElementById("c2" ).innerHTML == simbolo){
         obtenerGanador(simbolo)
+    }
+    else{
+        validaEmpate()
     }
 }
 
@@ -200,6 +233,9 @@ function validaB1(simbolo){
     else if(document.getElementById("b2").innerHTML == simbolo && document.getElementById("b3" ).innerHTML == simbolo){
         obtenerGanador(simbolo)
     }
+    else{
+        validaEmpate()
+    }
 }
 
 function validaB2(simbolo){
@@ -210,6 +246,9 @@ function validaB2(simbolo){
     }
     else if(document.getElementById("t2").innerHTML == simbolo && document.getElementById("c2" ).innerHTML == simbolo){
         obtenerGanador(simbolo)
+    }
+    else{
+        validaEmpate()
     }
 }
 
@@ -225,17 +264,91 @@ function validaB3(simbolo){
     else if(document.getElementById("b2").innerHTML == simbolo && document.getElementById("b1" ).innerHTML == simbolo){
         obtenerGanador(simbolo)
     }
+    else{
+        validaEmpate()
+    }
 }
 
 function obtenerGanador(simbolo){
 
+
     if(simbolo == "X"){
         document.getElementById("mensaje").innerHTML ="El ganador es el jugador: " + jugador1
+
+        marcador1++
+        document.getElementById("marcador1").innerHTML = marcador1
+
+        existeGanador = true
     }
     else{
         document.getElementById("mensaje").innerHTML ="El ganador es el jugador: " + jugador2
+
+        marcador2++
+        document.getElementById("marcador2").innerHTML = marcador2
+
+        existeGanador = true
     }
 
     //se muestra el mensaje
     document.getElementById("mensaje").hidden = false;
+}
+
+function validaEmpate(){
+
+    if(contadorTurnos > 8){
+        document.getElementById("mensaje").innerHTML = "El juego termina empate"            
+        document.getElementById("mensaje").hidden = false;
+    }
+}
+
+function reiniciarJuego(){
+    
+    document.getElementById("mensaje").hidden = true
+
+    empezarJuego()
+    //reinicia contador
+    contadorTurnos = 0
+    //resetea el ganador
+    existeGanador = false;
+
+    limpiarTabla()
+
+}
+    
+
+
+function terminarJuego(){
+    //reiniciaTurnos
+    contadorTurnos = 0
+
+    //reinicia el ganador
+    existeGanador = false
+    
+    //limpia tabla
+    limpiarTabla()
+
+    //reinicia marcadores
+    marcador1 = 0
+    marcador2 = 0
+
+    document.getElementById("marcador1").innerHTML = 0
+    document.getElementById("marcador2").innerHTML = 0
+
+    document.getElementById("contenedorTabla").hidden = true;
+    document.getElementById("contenedorJugadores").hidden = false;
+}
+
+function limpiarTabla(){
+    //limpia la tabla
+    var table=document.getElementById("tabla");
+    var r = 0;
+    
+    while(row = table.rows[r++])
+    {
+        var c = 0; 
+        while(cell=row.cells[c++])
+        {
+            cell.innerHTML='' 
+        }   
+    }
 }
