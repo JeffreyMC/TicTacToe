@@ -28,6 +28,10 @@
   cursor: pointer;
 }
 
+.tabla td:hover {
+  background-color: #b3d6db;
+}
+
 .centroGato {
   display: flex;
   justify-content: center;
@@ -36,5 +40,10 @@
 
 .centro-m1 {
   text-align: center;
-  margin-top: 1%;
+  margin-top: 2%;
+}
+
+#marcadoresTabla td {
+  border: 1px solid black;
+  text-align: center;
 }
