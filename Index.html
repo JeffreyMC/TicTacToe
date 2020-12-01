@@ -36,7 +36,7 @@
   <!--Tabla de Tica Tac Toe-->
   <div id="contenedorTabla" hidden>
     <div class="centroGato">
-      <table class="tabla">
+      <table class="tabla" id="tabla">
         <tr>
           <td
             id="t1"
@@ -99,7 +99,7 @@
     </div>
 
     <div class="centroGato">
-      <table>
+      <table id="marcadoresTabla">
         <tr>
           <th>Jugador 1</th>
           <th>Jugador 2</th>
@@ -118,8 +118,8 @@
 
     <!--Botones juego-->
     <div class="centro-m1">
-      <button>Terminar juego</button>
-      <button>Reiniciar juego</button>
+      <button onclick="terminarJuego()">Terminar juego</button>
+      <button onclick="reiniciarJuego()">Reiniciar juego</button>
     </div>
   </div>
 
